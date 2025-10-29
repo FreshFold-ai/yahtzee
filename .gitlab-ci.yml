@@ -19,6 +19,8 @@ build-job:
 test-job:
   stage: test
   image: gcc:latest
+  before_script:
+    - apt-get update && apt-get install -y cmake g++  # <-- install cmake here too
   script:
     - cd build
     - ctest --output-on-failure
