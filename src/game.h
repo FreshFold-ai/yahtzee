@@ -14,14 +14,16 @@ public:
     int getCurrRound();
     int getCurrScore();
     int getTotalScore();
-    void getValidSlots();
     void pickSlot(int slot);
+    void assignPoints(int slot);
+    void sortDice();
 
 private:
     int totalScore(0);
     int currRound(0);
     int maxRound(13) const;
     std::array<int, 5> faceValues;
+    std::array<int, 5> sortedDice;
     std::arry<Dice, 5> gameDice;
     Scorecard scorecard;
 };
