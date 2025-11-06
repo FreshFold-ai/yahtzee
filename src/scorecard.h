@@ -7,10 +7,8 @@ class Scorecard {
 public: 
 	Scorecard();
 	void printScorecard() const;
-	void pickSlot(int slot, int player);
+	void fillSlot(int slot, int player, std::array<int, 5> values);
 	int calculatePoints(int slot, std::array<int, 5> values);
-	void assignPoints(int slot, int player, int points);
-	void removeSlot(int slot, int player);
 	void applyBonuses() const;
 
 private:
