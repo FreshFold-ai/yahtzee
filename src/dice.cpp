@@ -1,15 +1,14 @@
 #include <random>
 #include "dice.h"
 
-Dice::Dice()
-{
-}
+Dice::Dice() : faceValue(0){}
 
 int Dice::roll() {
-    static std::random_device rd;
-    static std::mt19937 gen(rd());
-    std::uniform_int_distribution<> dist(1, 6);
-    return dist(gen);
+    static thread_local std::mt19937 gen(std::random_device{}());
+    static thread_local std::uniform_int_distribution<int> dist(1, 6);
+    int val = dist(gen);
+    this->faceValue = val;   // store the rolled value in the object
+    return val;
 }
 
 int Dice::getFaceValue(){
