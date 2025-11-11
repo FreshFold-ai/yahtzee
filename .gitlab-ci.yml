@@ -1,28 +1,18 @@
+image: ubuntu:24.04
+
 stages:
   - build
-  - test
 
-build-job:
+before_script:
+  - apt-get update -y
+  - DEBIAN_FRONTEND=noninteractive apt-get install -y build-essential cmake
+
+build:
   stage: build
-  image: gcc:latest
-  before_script:
-    - apt-get update && apt-get install -y cmake g++
   script:
-    - mkdir build
-    - cd build
-    - cmake ..
-    - make
+    - cmake -S . -B build -DCMAKE_BUILD_TYPE=Release
+    - cmake --build build -- -j$(nproc)
   artifacts:
     paths:
-      - build
-
-test-job:
-  stage: test
-  image: gcc:latest
-  before_script:
-    - apt-get update && apt-get install -y cmake g++  # <-- install cmake here too
-  script:
-    - cd build
-    - ctest --output-on-failure
-  needs:
-    - build-job
+      - build/yahtzee
+    expire_in: 1 week

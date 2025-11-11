@@ -12,16 +12,16 @@ public:
     void roll5();
     void setFaceValues();
     int getCurrRound();
-    int getCurrScore();
-    int getTotalScore(int player);
+    int getCurrScore() const;
+    int getTotalScore(int player) const;
     void pickSlot(int player, int slot, std::array<int, 5> values);
 
 private:
-    int totalScore(0);
-    int currRound(0);
-    int maxRound(13) const;
-    std::array<int, 5> faceValues;
-    std::array<int, 5> sortedValues;
-    std::arry<Dice, 5> gameDice;
+    int totalScore = 0;
+    int currRound = 0;
+    static constexpr int maxRound = 13;
+    std::array<int, 5> faceValues{};
+    std::array<int, 5> sortedValues{};
+    std::array<Dice, 5> gameDice{};
     Scorecard scorecard;
 };

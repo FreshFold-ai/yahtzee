@@ -4,9 +4,9 @@
 class Dice{
 	public:
 		Dice();
-		int roll() const;
-		int getFaceValue() const;
-		void setFaceValue(int v) const; 
+		int roll();
+		int getFaceValue();
+		void setFaceValue(int v); 
 	private:
 		int faceValue = 0;
 };

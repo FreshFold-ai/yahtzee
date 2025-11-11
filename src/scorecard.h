@@ -6,10 +6,10 @@
 class Scorecard {
 public: 
 	Scorecard();
-	void printScorecard() const;
+	void printScoreCard() const;
 	void fillSlot(int slot, int player, std::array<int, 5> values);
 	int calculatePoints(int slot, std::array<int, 5> values);
-	void applyBonuses() const;
+	void applyBonuses();
 
 private:
 	std::array<std::array<int, 13>, 2> scores = {};
