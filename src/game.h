@@ -22,6 +22,7 @@ private:
     static constexpr int maxRound = 13;
     std::array<int, 5> faceValues{};
     std::array<int, 5> sortedValues{};
+    std::array<bool, 5> heldDice{};
     std::array<Dice, 5> gameDice{};
     Scorecard scorecard;
 };
