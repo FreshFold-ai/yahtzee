@@ -62,6 +62,14 @@ void Scorecard::fillSlot(int slot, int player, std::array<int, 5> values, std::a
 	}
 }
 
+int Scorecard::calculateTotal(int player){
+	int total = 0;
+	for(int i = 0; i < 13; i++){
+		total += scores[player][i];
+	}
+	return total;
+}
+
 int Scorecard::calculatePoints(int slot, int player, std::array<int, 5> values, std::array<int, 6> freqArray){
 	if(slot == 1){
 		//calculate # of 1s, adding 1 per found int, returning the total points for 1s 
@@ -232,15 +240,16 @@ int Scorecard::getDieSum(std::array<int, 5> values){
 	return sum;
 }
 
-int Scorecard::calculateTotal(int player){
-	int total = 0;
-	for(int i = 0; i < 13; i++){
-		total += scores[player][i];
-	}
-	return total;
-}
-
 void Scorecard::applyBonuses(){
-
+	//if the upper section score is >= 63, add 35 points
+	for(int player = 0; player < 2; player++){
+		int upperScore = 0;
+		for(int slot = 0; slot < 6; slot++){
+			upperScore += scores[player][slot];
+		}
+		if(upperScore >= 63){
+			scores[player][6] += 35; //add bonus to 3 of a kind slot
+		}
+	}
 }
 

@@ -78,6 +78,7 @@ void Game::play(){
         }
     }
     std::cout << "Game Over!" << std::endl;
+    this->scorecard.applyBonuses();
     std::cout << "Final Scores - Player 1: " << this->getTotalScore(0) << ", Player 2: " << this->getTotalScore(1) << std::endl;
     if(this->totalScore0 > this->totalScore1){
         std::cout << "Player 1 wins!" << std::endl;

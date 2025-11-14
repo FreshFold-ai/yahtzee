@@ -9,6 +9,7 @@ public:
 	void printScoreCard() const;
 	void fillSlot(int slot, int player, std::array<int, 5> values, std::array<int, 6> freqArray);
 	int calculatePoints(int slot, int player, std::array<int, 5> values, std::array<int, 6> freqArray);
+	int calculateTotal(int player);
 	void applyBonuses();
 	int getDieSum(std::array<int, 5> values);
 
