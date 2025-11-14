@@ -6,7 +6,7 @@ Game::Game()
     faceValues.fill(0);
     sortedValues.fill(0);
 	freqArray.fill(0);
-    rerollIndices.fill(0);
+    rerollIndices.fill(-1);
 }
 const std::array<int, 5>& Game::getFaceValues() const {
     return faceValues;
@@ -57,7 +57,7 @@ void Game::play(){
                 std::cout << std::endl;
                 if(j < 2){
                     std::cout << "Enter indices (0-4) of dice to reroll, separated by spaces (enter -1 to stop):" << std::endl;
-                    this->rerollIndices.fill(0);
+                    this->rerollIndices.fill(-1);
                     int index;
                     int count = 0;
                     while(true){
@@ -104,7 +104,7 @@ int Game::getCurrRound(){
 //and simultaneously updates the sortedValues array. 
 void Game::roll5(std::array<int, 5> rerollIndices){
 	for(int index : rerollIndices){
-        if(index>0){
+        if(index >= 0 && index < static_cast<int>(this->gameDice.size())){
             this->gameDice[index].roll();
         }
     }
