@@ -9,7 +9,8 @@ Scorecard::Scorecard()
 void Scorecard::printScoreCard() const{
 	for(int i = 1; i < 3; i++){
 		for(int j = 0; j < 13; j++){
-			std::cout << scores[i][j] << std::endl;
+			std::cout << "Player " << i << ": ";
+			std::cout << "Slot " << j << ": " << scores[i][j] << std::endl;
 		}
 	}
 }
