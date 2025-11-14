@@ -32,25 +32,30 @@ int Game::getTotalScore(int player) const {
     }
 }
 
+// ...existing code...
 void Game::play(){
-	this->currRound += 1;
+    this->currRound += 1;
     std::cout << "Starting Yahtzee Game, Round: " << this->currRound << std::endl;
     while(this->currRound <= maxRound){
-        //game logic here
         for(int i = 0; i < 2; i++){
-            //each player's turn
             std::cout << "Player " << i+1 << "'s turn: Round " << this->currRound << std::endl;
             for(int j = 0; j < 3; j++){
-                //up to 3 rolls
-                this->roll5(this->rerollIndices);
-                this->setFaceValues();
+                if(j == 0){
+                    // First roll: roll all 5 dice
+                    for(auto &die : this->gameDice){
+                        die.roll();
+                    }
+                    this->setFaceValues();
+                } else {
+                    // Subsequent rolls: reroll only selected dice
+                    this->roll5(this->rerollIndices);
+                }
                 std::cout << "Current Roll: ";
                 for(int val : this->getFaceValues()){
                     std::cout << val << " ";
                 }
                 std::cout << std::endl;
                 if(j < 2){
-                    //ask player which dice to reroll
                     std::cout << "Enter indices (0-4) of dice to reroll, separated by spaces (enter -1 to stop):" << std::endl;
                     this->rerollIndices.fill(0);
                     int index;
@@ -69,13 +74,13 @@ void Game::play(){
                     }
                 }
             }
-            //after rolling, ask player to pick a slot
             int slot;
             std::cout << "Enter slot number (1-13) to fill:" << std::endl;
             std::cin >> slot;
             this->pickSlot(i, slot, this->getFaceValues(), this->getFreqArray());
             std::cout << "Player " << i+1 << "'s total score: " << this->getTotalScore(i) << std::endl;
         }
+        this->currRound++;
     }
     std::cout << "Game Over!" << std::endl;
     this->scorecard.applyBonuses();
@@ -87,6 +92,10 @@ void Game::play(){
     } else {
         std::cout << "It's a tie!" << std::endl;
     }
+}
+
+int Game::getCurrRound(){
+    return this->currRound;
 }
 
 //roll5 rolls each of the 5 die, 
