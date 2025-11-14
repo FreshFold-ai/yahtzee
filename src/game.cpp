@@ -35,7 +35,7 @@ int Game::getTotalScore(int player) const {
 // ...existing code...
 void Game::play(){
     this->currRound += 1;
-    std::cout << "Starting Yahtzee Game, Round: " << this->currRound << std::endl;
+    std::cout << "Starting Yahtzee Game: " << std::endl;
     while(this->currRound <= maxRound){
         for(int i = 0; i < 2; i++){
             std::cout << "Player " << i+1 << "'s turn: Round " << this->currRound << std::endl;
@@ -74,6 +74,7 @@ void Game::play(){
                     }
                 }
             }
+            this->scorecard.printScoreCard(i);
             int slot;
             std::cout << "Enter slot number (1-13) to fill:" << std::endl;
             std::cin >> slot;
