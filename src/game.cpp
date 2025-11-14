@@ -55,6 +55,12 @@ void Game::play(){
                     std::cout << val << " ";
                 }
                 std::cout << std::endl;
+                std::cout << "Indices:      ";
+                for(size_t idx = 0; idx < this->getFaceValues().size(); ++idx){
+                   std::cout << idx << " ";
+                }
+                std::cout << std::endl;
+
                 if(j < 2){
                     std::cout << "Enter indices (0-4) of dice to reroll, separated by spaces (enter -1 to stop):" << std::endl;
                     this->rerollIndices.fill(-1);
