@@ -6,6 +6,7 @@ Game::Game()
     faceValues.fill(0);
     sortedValues.fill(0);
 	freqArray.fill(0);
+    rerollIndices.fill(0);
 }
 const std::array<int, 5>& Game::getFaceValues() const {
     return faceValues;
@@ -24,24 +25,46 @@ const std::array<Dice, 5>& Game::getGameDice() const {
 }
 
 int Game::getTotalScore(int player) const {
-	return this->totalScore;
-}
-int Game::getCurrScore() const{
-	return this->currRound;
+    if (player == 0) {
+        return totalScore0;
+    } else {
+        return totalScore1;
+    }
 }
 
 void Game::play(){
 	this->currRound += 1;
+    std::cout << "Starting Yahtzee Game, Round: " << this->currRound << std::endl;
+    while(this->currRound <= maxRound){
+        //game logic here
+        for(int i = 0; i < 2; i++){
+            //each player's turn
+            std::cout << "Player " << i+1 << "'s turn!" << std::endl;
+            //roll dice and pick slot logic here
+            
+        }
+    }
 }
 
 //roll5 rolls each of the 5 die, 
 //and then this.setFaceValues() updates FaceValues to match the most recent roll
 //and simultaneously updates the sortedValues array. 
-void Game::roll5(){
-	for(auto &die : this->gameDice){
-		die.roll();
-	}
+void Game::roll5(std::array<int, 5> rerollIndices){
+	for(int index : rerollIndices){
+        if(index>0){
+            this->gameDice[index].roll();
+        }
+    }
 	this->setFaceValues();
+}
+
+void Game::pickSlot(int player, int slot, std::array<int, 5> values, std::array<int, 6> freqArray){
+    this->scorecard.fillSlot(slot, player, values, freqArray);
+    if(player == 0){
+        this->totalScore0 = this->scorecard.calculateTotal(0);
+    } else {
+        this->totalScore1 = this->scorecard.calculateTotal(1);
+    }
 }
 
 void Game::setFaceValues(){
