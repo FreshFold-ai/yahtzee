@@ -1,9 +1,10 @@
 #include <random>
 #include "dice.h"
 
-Dice::Dice() : faceValue(0){}
+Dice::Dice() : faceValue(0) {}
 
-int Dice::roll() {
+int Dice::rollDice() 
+{
     static thread_local std::mt19937 gen(std::random_device{}());
     static thread_local std::uniform_int_distribution<int> dist(1, 6);
     int val = dist(gen);
@@ -11,12 +12,14 @@ int Dice::roll() {
     return val;
 }
 
-int Dice::getFaceValue(){
+int Dice::getFaceValue()
+{
 	return this->faceValue;
 }
 
-void Dice::setFaceValue(int val){
-	if(val>0 && val <7){
+void Dice::setFaceValue(int val)
+{
+	if(val > 0 && val < 7) {
 	    	this->faceValue = val;
 	}
 };

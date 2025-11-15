@@ -1,10 +1,11 @@
 #pragma once
 #include <random>
 
-class Dice{
+class Dice
+{
 	public:
 		Dice();
-		int roll();
+		int rollDice();
 		int getFaceValue();
 		void setFaceValue(int v); 
 	private:
