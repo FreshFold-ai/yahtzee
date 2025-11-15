@@ -44,7 +44,8 @@ void Scorecard::fillSlot(int slot, int player, std::array<int, 5> values, std::a
 			//we need to ask the user to pick a slot in the top table (0-5), for that player, which
 			// is yet unfilled
 			int slot2;
-			std::cout << "You have already scored a Yahtzee! Pick a different slot in the upper section (1-6):" << std::endl;
+			std::cout << "You have already scored a Yahtzee!" << std::endl;
+			std::cout << "Pick a different slot in the upper section (1-6):" << std::endl;
 			std::cin >> slot2;
 			while(this->slotFreq[player][slot2-1] != 0){
 				std::cout << "This is already full! Pick a different slot in the upper section (1-6):" << std::endl;
